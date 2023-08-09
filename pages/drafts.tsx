@@ -1,9 +1,10 @@
-import React from 'react';
-import { GetServerSideProps } from 'next';
-import { useSession, getSession } from 'next-auth/react';
-import Layout from '../components/Layout';
-import Post, { PostProps } from '../components/Post';
-import prisma from '../lib/prisma';
+import React, { useState } from 'react'
+import { GetServerSideProps } from 'next'
+import { useSession, getSession } from 'next-auth/react'
+import Post, { PostProps } from '../components/Post'
+import prisma from '../lib/prisma'
+import Layout from '../components/Layout'
+// import { Session } from 'next-auth'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });
@@ -24,15 +25,17 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     },
   });
   return {
-    props: { drafts },
-  };
-};
+    props: { drafts }
+  }
+}
 
-type Props = {
-  drafts: PostProps[];
-};
+type DraftsProps = {
+  // session: Session
+  drafts: PostProps[]
+}
 
-const Drafts: React.FC<Props> = (props) => {
+// @refresh reset
+const Drafts: React.FC<DraftsProps> = (props) => {
   const { data: session } = useSession();
 
   if (!session) {
@@ -72,6 +75,6 @@ const Drafts: React.FC<Props> = (props) => {
       `}</style>
     </Layout>
   );
-};
+}
 
-export default Drafts;
+export default Drafts

@@ -70,7 +70,7 @@ const Header: React.FC = () => {
       </div>
 
     );
-    right - (
+    right = (
       <div className="right">
         <p>Validating session ...</p>
         <style jsx>{`
@@ -122,7 +122,7 @@ const Header: React.FC = () => {
             Feed
           </a>
         </Link>
-        <Link href="/drafs">
+        <Link href="/drafts">
           <a data-active={isActive('/drafts')}>My drafts</a>
         </Link>
         <style jsx>{`

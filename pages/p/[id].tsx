@@ -30,7 +30,18 @@ async function publishPost(id: string): Promise<void> {
   await Router.push('/');
 }
 
-const Post: React.FC<PostProps> = (props) => {
+async function deletePost(id: string): Promise<void> {
+  await fetch(`/api/post/${id}`, {
+    method: 'DELETE',
+  });
+  Router.push('/');
+}
+
+// type Props = {
+//   post: PostProps
+// }
+
+const PostDetail: React.FC<PostProps> = (props) => {
   const { data: session, status } = useSession();
   if (status === 'loading') {
     return <div>Authenticating ...</div>;
@@ -54,8 +65,7 @@ const Post: React.FC<PostProps> = (props) => {
         
         {userHasValidSession && postBelongsToUser && (
           <button onClick={() => deletePost(props.id)}>Delete</button>
-        );
-       }
+        )}
 
       </div>
       <style jsx>{`
@@ -83,4 +93,4 @@ const Post: React.FC<PostProps> = (props) => {
   );
 };
 
-export default Post;
+export default PostDetail;
