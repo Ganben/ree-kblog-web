@@ -4,6 +4,7 @@ import { useSession, getSession } from 'next-auth/react'
 import Post, { PostProps } from '../components/Post'
 import prisma from '../lib/prisma'
 import Layout from '../components/Layout'
+import {Grid} from '@mui/material'
 // import { Session } from 'next-auth'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
@@ -49,7 +50,7 @@ const Drafts: React.FC<DraftsProps> = (props) => {
 
   return (
     <Layout>
-      <div className="page">
+      <Grid className="page">
         <h1>My Drafts</h1>
         <main>
           {props.drafts.map((post) => (
@@ -58,7 +59,7 @@ const Drafts: React.FC<DraftsProps> = (props) => {
             </div>
           ))}
         </main>
-      </div>
+      </Grid>
       <style jsx>{`
         .post {
           background: var(--geist-background);

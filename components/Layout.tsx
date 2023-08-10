@@ -1,14 +1,17 @@
 import React, { ReactNode } from "react";
 import Header from "./Header";
+import {Grid, Container} from "@mui/material";
 
 type Props = {
   children: ReactNode;
 };
 
 const Layout: React.FC<Props> = (props) => (
-  <div>
+  <main>
+  <Grid container height="100vh" alignItems="center" justifyContent="center" direction="column">
+
     <Header />
-    <div className="layout">{props.children}</div>
+    <Container className="layout">{props.children}</Container>
     <style jsx global>{`
       html {
         box-sizing: border-box;
@@ -44,7 +47,8 @@ const Layout: React.FC<Props> = (props) => (
         padding: 0 2rem;
       }
     `}</style>
-  </div>
+  </Grid>
+  </main>
 );
 
 export default Layout;

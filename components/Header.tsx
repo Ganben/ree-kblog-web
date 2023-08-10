@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from 'next-auth/react';
+import { AppBar, Container, Grid } from "@mui/material";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -197,7 +198,8 @@ const Header: React.FC = () => {
 
 
   return (
-    <nav>
+    <Grid>
+    <AppBar>
       {left}
       {right}
       <style jsx>{`
@@ -207,7 +209,8 @@ const Header: React.FC = () => {
           align-items: center;
         }
       `}</style>
-    </nav>
+    </AppBar>
+    </Grid>
   );
 };
 
