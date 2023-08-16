@@ -3,7 +3,7 @@ import { GetStaticProps } from "next"
 import Layout from "../components/Layout"
 import Post, { PostProps } from "../components/Post"
 import prisma from '../lib/prisma'
-import {Grid} from '@mui/material'
+import {Grid, Stack, Typography} from '@mui/material'
 
 export const getStaticProps: GetStaticProps = async () => {
   const feed = await prisma.post.findMany({
@@ -27,30 +27,20 @@ type Props = {
 const Blog: React.FC<Props> = (props) => {
   return (
     <Layout>
-      <Grid className="page">
-        <h1>Public Feed</h1>
-        <main>
+      <Stack spacing={2}>
+        <Typography
+          variant="h2"
+        >Public Feed</Typography>
+        
           {props.feed.map((post) => (
-            <div key={post.id} className="post">
+            <div 
+              key={post.id}
+              >
               <Post post={post} />
             </div>
           ))}
-        </main>
-      </Grid>
-      <style jsx>{`
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style>
+        
+      </Stack>
     </Layout>
   )
 }
